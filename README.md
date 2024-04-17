@@ -46,7 +46,7 @@ Sorry, the ATM doesn't have that much cash anymore.
 ```
 
 ## d) Commit und Push
-Committen Sie alle Ihre Änderungen am Quellcode, und pushen Sie den neuen Branch auf das remote namens `origin` (= GitHub). Um über HTTPS pushen zu können, müssen Sie auf GitHub ein sog. *personal access token* erzeugen, und dieses anstelle Ihres Passwortes verwenden. [Hier](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) gibt es dazu eine Anleitung. Bei scopes müssen Sie nur einen Haken bei `repo` machen, alles andere kann so bleiben.
+Committen Sie alle Ihre Änderungen am Quellcode, und pushen Sie den neuen Branch auf das remote namens `origin` (= GitHub). Um über HTTPS pushen zu können, verwenden Sie **nicht** Ihr Passwort. Stattdessen müssen Sie auf GitHub ein sog. *personal access token* erzeugen, und dieses anstelle Ihres Passwortes verwenden. [Hier](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) gibt es dazu eine Anleitung. Bei scopes müssen Sie nur einen Haken bei `repo` machen, alles andere kann so bleiben.
 
 In Eclipse wählen Sie dazu `Team > Push to origin ...` oder `Team > Push branch USERNAME ...`
 
