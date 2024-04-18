@@ -48,8 +48,7 @@ public class ATM {
 
 	public void cashout(int id, int amount) {
 		
-		
-		if (amount <= this.accounts[id-1].getAccountBalance() && amount <= this.availableMoney) {
+		if (amount <= this.accounts[id-1].getAccountBalance() && amount <= this.availableMoney) { //Eingegebene ID wird genutzt um ein Konto zu finden. 
 			this.accounts[id-1].minus(amount);
 			this.availableMoney -= amount;
 			System.out.println("Ok, here is your money, enjoy!");
