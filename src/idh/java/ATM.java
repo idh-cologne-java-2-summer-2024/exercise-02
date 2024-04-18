@@ -15,16 +15,26 @@ public class ATM {
 	public void run() {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
-			try {
-				System.out.print("Enter the amount to withdraw: ");
+			try {System.out.print("Welcome! Please enter your accountnumber: ");
+			int accountNbr = Integer.parseInt(br.readLine());
+				
+			 if (existingAccount(accountNbr){
+				 System.out.print("Enter the amount to withdraw: ");
 				int amount = Integer.parseInt(br.readLine());
 				cashout(amount);
+			 } 
+			 else {
+				 System.out.print("This Account does not exist. Please try again");
+			 }
 			} catch (Exception e) {
 				break;
 			}
 		}
 	}
-
+	public boolean existingAccount(int accountNbr) {
+		
+		return accountExists
+	}
 	public void cashout(int amount) {
 		if (amount < accountBalance) {
 			accountBalance = accountBalance - amount;
