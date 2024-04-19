@@ -4,43 +4,67 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class ATM {
-	int accountBalance = 100;
+    private int[] kontoNR = {361, 420, 611}; 
+    private int[] accountBalance = {100, 200, 150}; 
+    private int geldimATM = 300; 
 
-	/**
-	 * Main command loop of the ATM Asks the user to enter a number, and passes this
-	 * number to the function cashout(...) which actually does the calculation and
-	 * produces money. If the user enters anything else than an integer number, the
-	 * loop breaks and the program exists
-	 */
-	public void run() {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		while (true) {
-			try {
-				System.out.print("Enter the amount to withdraw: ");
-				int amount = Integer.parseInt(br.readLine());
-				cashout(amount);
-			} catch (Exception e) {
-				break;
-			}
-		}
-	}
+    /**
+     * Main command loop of the ATM Asks the user to enter an account number and
+     * amount, and performs withdrawal if conditions are met.
+     */
+    public void run() {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        while (true) {
+            try {
+                System.out.print("Enter your account number: ");
+                int accountNumber = Integer.parseInt(br.readLine());
+                System.out.print("Enter the amount to withdraw: ");
+                int amount = Integer.parseInt(br.readLine());
+                withdraw(accountNumber, amount);
+            } catch (Exception e) {
+                System.out.println("Invalid input. Exiting...");
+                break;
+            }
+        }
+    }
 
-	public void cashout(int amount) {
-		if (amount < accountBalance) {
-			accountBalance = accountBalance - amount;
-			System.out.println("Ok, here is your money, enjoy!");
-		} else {
-			System.out.println("Sorry, not enough money in the bank.");
-		}
+    /**
+     * Withdraws the specified amount from the specified account if conditions are met.
+     */
+    public void withdraw(int accountNumber, int amount) {
+        int index = findKontoIndex(accountNumber);
+        if (index == -1) {
+            System.out.println("Account not found.");
+            return;
+        }
 
-	};
+        int balance = accountBalance[index];
+        if (amount > balance) {
+            System.out.println("Sorry, you don't have enough money in the bank.");
+            return;
+        }
 
-	/**
-	 * Launches the ATM
-	 */
-	public static void main(String[] args) {
-		ATM atm = new ATM();
-		atm.run();
-	};
+        if (amount > geldimATM) {
+            System.out.println("Sorry, the ATM doesn't have that much cash anymore.");
+            return;
+        }
 
+        accountBalance[index] -= amount;
+        geldimATM -= amount;
+        System.out.println("Ok, here is your money, enjoy!");
+    }
+
+    private int findKontoIndex(int accountNumber) {
+        for (int i = 0; i < kontoNR.length; i++) {
+            if (kontoNR[i] == accountNumber) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        ATM atm = new ATM();
+        atm.run();
+    }
 }
