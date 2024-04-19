@@ -7,7 +7,7 @@ public class ATM {
     private int[] kontoNR = {361, 420, 611}; 
     private int[] accountBalance = {100, 200, 150}; 
     private int geldimATM = 300; 
-
+//Test
     /**
      * Main command loop of the ATM Asks the user to enter an account number and
      * amount, and performs withdrawal if conditions are met.
