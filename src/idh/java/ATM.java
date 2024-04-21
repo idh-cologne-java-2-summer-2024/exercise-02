@@ -52,7 +52,7 @@ public class ATM {
 
 	public void cashout(Account a, int amount) {
 		if(this.cashInATM > 0) {
-			if (amount < a.balance) {
+			if (amount <= a.balance) {
 				a.balance = a.balance - amount;
 				System.out.println("Ok, here is your money, enjoy!");
 				cashInATM = cashInATM - amount;
