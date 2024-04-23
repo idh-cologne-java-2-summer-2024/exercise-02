@@ -14,17 +14,19 @@ public class ATM {
 	 */
 	public void run(User[] u) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
 		while (true) {
 			try {
+				System.out.println("Enter your name.");
 				String input = br.readLine();
 				
-				if(input.equals(u[0].name))
-				System.out.println("Enter your name.");
-				
-				
-				System.out.print("Enter the amount to withdraw: ");
-				int amount = Integer.parseInt(br.readLine());
-				cashout(amount);
+					if(input.compareToIgnoreCase(u[0].name) == 0 || input.compareToIgnoreCase(u[1].name) == 0) {
+						System.out.print("Enter the amount to withdraw: ");
+						int amount = Integer.parseInt(br.readLine());
+						cashout(amount);
+				}else {
+					System.out.println("Name not found");
+				}
 			} catch (Exception e) {
 				break;
 			}
@@ -32,9 +34,10 @@ public class ATM {
 	}
 
 	public void cashout(int amount) {
-		if (amount < accountBalance) {
+		if (amount <= accountBalance) {
 			accountBalance = accountBalance - amount;
 			System.out.println("Ok, here is your money, enjoy!");
+			return;
 		} else {
 			System.out.println("Sorry, not enough money in the bank.");
 		}
@@ -51,8 +54,8 @@ public class ATM {
 		User u2 = new User(2, 100, "Timmy Turner");
 		users[0] = u1;
 		users[1] = u2;
-		System.out.println(users[0].name);
-//		atm.run(users);
+//		System.out.println(users[0].name);
+		atm.run(users);
 	};
 
 }
