@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 
 public class ATM {
 	int ATMBalance = 100;
-	int[][] accounts;
+	int[][] accounts; 
 	
 	public ATM()
 	{
