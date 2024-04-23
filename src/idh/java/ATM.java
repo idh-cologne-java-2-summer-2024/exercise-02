@@ -4,36 +4,73 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class ATM {
-	int accountBalance = 100;
+	int accountBalance = 1000;
 
-	/**
-	 * Main command loop of the ATM Asks the user to enter a number, and passes this
-	 * number to the function cashout(...) which actually does the calculation and
-	 * produces money. If the user enters anything else than an integer number, the
-	 * loop breaks and the program exists
-	 */
+	Bankkonto kontos [];
+	
+	public ATM () { 
+		
+		System.out.print("ATM wird gestarted...");
+		
+		kontos = new Bankkonto [20];
+		
+		kontos [0] = new Bankkonto (1234, "Hans", 1000);
+	}
+	
 	public void run() {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
 			try {
+				System.out.print("Enter your account number: ");
+				int accountNumber = Integer.parseInt(br.readLine());
+				
+				
 				System.out.print("Enter the amount to withdraw: ");
 				int amount = Integer.parseInt(br.readLine());
-				cashout(amount);
+				cashout(amount, accountNumber);
 			} catch (Exception e) {
 				break;
 			}
 		}
 	}
 
-	public void cashout(int amount) {
+	public void cashout(int amount, int accountNumber) {
+		
+		Bankkonto konto = getBankKontoByNumber(accountNumber);
+		
+		if (konto == null) {
+			return;
+		}
+		
+		if (konto.guthaben < amount) {
+			System.out.print("Sorry, you dont't have enough money in the bank.");
+			return;
+			}
+		
 		if (amount < accountBalance) {
 			accountBalance = accountBalance - amount;
+			konto.guthaben = konto.guthaben - amount;
 			System.out.println("Ok, here is your money, enjoy!");
 		} else {
 			System.out.println("Sorry, not enough money in the bank.");
 		}
+	}
 
-	};
+		
+		private Bankkonto getBankKontoByNumber(int accountNumber) {
+			 for (Bankkonto konto : kontos) {
+				if (konto != null) {
+					if (konto.kontonummer == accountNumber) {
+						return konto;
+					}
+				}
+			 
+			 }
+			 
+			return null;
+			 
+		 }
+		
 
 	/**
 	 * Launches the ATM
@@ -42,5 +79,6 @@ public class ATM {
 		ATM atm = new ATM();
 		atm.run();
 	};
+
 
 }
