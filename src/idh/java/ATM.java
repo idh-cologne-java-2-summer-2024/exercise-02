@@ -16,8 +16,11 @@ public class ATM {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
 			try {
+				String input = br.readLine();
+				
+				if(input.equals(u[0].name))
 				System.out.println("Enter your name.");
-			
+				
 				
 				System.out.print("Enter the amount to withdraw: ");
 				int amount = Integer.parseInt(br.readLine());
