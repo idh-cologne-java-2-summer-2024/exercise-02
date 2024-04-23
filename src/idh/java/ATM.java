@@ -20,7 +20,7 @@ public class ATM {
 			/**
 	 * number to the function cashout(...) which actually does the calculation and
 	 * produces money. If the user enters anything else than an integer number, the
-	 * loop breaks and the program exists
+	 * loop breaks and the program exists ssss
 	 */
 	public void run() {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
