@@ -15,6 +15,7 @@ public class ATM {
 		kontos[1] = new Bankkonto(1,"Sabrina", 200);
 		kontos[2] = new Bankkonto(2,"Godfried", 200);
 		kontos[3] = new Bankkonto(3,"Agatha", 200);
+		
 	}
 	
 			/**
