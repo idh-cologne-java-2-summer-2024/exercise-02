@@ -5,26 +5,24 @@ import java.io.InputStreamReader;
 import java.util.Random;
 
 /**
- * This is a straightforward solution to the exercise. The ATM contains an array
- * of {@link idh.java.Account} objects, each object stores its id and balance
- * values. The function {@link #getAccount(int)} can be used to retrieve the
- * account for a specific id.
- * 
- * @see idh.java.ATM_simple for a simpler and less flexible solution
+ * This is a simpler solution to the exercise. Instead of creating an additional
+ * class Account, we're storing the balance of each account in a simple
+ * int-Array. This is a good solution for this exercise, but is difficult to
+ * extend (e.g., if we want to store other data for each account).
  */
-public class ATM {
+public class ATM_simple {
 
     // initial cash in the ATM
     int cash = 100;
 
     // accounts known to the ATM
-    Account[] accounts = new Account[5];
+    int[] balances = new int[5];
 
-    public ATM() {
+    public ATM_simple() {
 	// create accounts with varying balances
 	Random random = new Random();
-	for (int i = 0; i < accounts.length; i++) {
-	    accounts[i] = new Account(i, random.nextInt(1000));
+	for (int i = 0; i < balances.length; i++) {
+	    balances[i] = random.nextInt(1000);
 	}
     }
 
@@ -58,21 +56,20 @@ public class ATM {
 	}
 
 	// check for existence of the account
-	Account account = getAccount(accountNumber);
-	if (account == null) {
+	if (accountNumber > balances.length - 1 || accountNumber < 0) {
 	    System.out.println("Sorry, this account doesn't exist.");
 	    return;
 	}
 
 	// check for balance of the account
-	if (amount > account.getBalance()) {
+	if (amount > balances[accountNumber]) {
 	    System.out.println("Sorry, you're out of money.");
 	    return;
 	}
 
 	// withdraw
-	account.withdraw(amount);
-	cash += amount;
+	balances[accountNumber] = balances[accountNumber] - amount;
+	cash -= amount;
 	System.out.println("Ok, here is your money, enjoy!");
 
     };
@@ -81,22 +78,8 @@ public class ATM {
      * Launches the ATM
      */
     public static void main(String[] args) {
-	ATM atm = new ATM();
+	ATM_simple atm = new ATM_simple();
 	atm.run();
     };
-
-    /**
-     * Retrieves the account given an id.
-     * 
-     * @param id
-     * @return
-     */
-    protected Account getAccount(int id) {
-	for (int i = 0; i < accounts.length; i++) {
-	    if (accounts[i].getId() == id)
-		return accounts[i];
-	}
-	return null;
-    }
 
 }
