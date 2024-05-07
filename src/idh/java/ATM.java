@@ -4,15 +4,16 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class ATM {
-    private int accountBalance;
-    private int kontoNr;
+    private int storedMoney;
 
     /**
      * Der Constructor um den Konten die Geldbeträge zuzuordnen.
      */
-    public ATM(int kontoNr, int accountBalance) {
-        this.kontoNr = kontoNr;
-        this.accountBalance = accountBalance;
+    public ATM(int storedMoney) {
+    	Bankkonto[] BK = new Bankkonto[2];
+    	BK[0] = new Bankkonto(5555, 1000);
+        BK[1] = new Bankkonto(1234, 500);
+        this.storedMoney = storedMoney;
     }
 
     /**
@@ -22,35 +23,30 @@ public class ATM {
      * loop breaks and the program exists
      */
     public static void run() {
-        ATM atm1 = new ATM(5555, 1000);
-        ATM atm2 = new ATM(1234, 500);
-
+        
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             try {
                 System.out.println("Please enter your account number");
                 int kontoNrCurrent = Integer.parseInt(br.readLine());
-                if (atm1.kontoNr == kontoNrCurrent) {
-                    System.out.println("Enter the amount to withdraw: ");
+                for (int i=0;i<BK.length;i++) {
+                	if (BK[i]) {
+                		System.out.println("Enter the amount to withdraw: ");
                     int amount = Integer.parseInt(br.readLine());
-                    atm1.cashout(amount);
-                } else if (atm2.kontoNr == kontoNrCurrent) {
-                    System.out.println("Enter the amount to withdraw: ");
-                    int amount = Integer.parseInt(br.readLine());
-                    atm2.cashout(amount);
-                } else {
-                    System.out.println("Please type in a correct account number");
-                }
-            } catch (Exception e) {
+                    //    atm2.cashout(amount);
+                    } else {
+                    //    System.out.println("Please type in a correct account number");
+                    //	}
+                	}
+                } catch (Exception e) {
                 break;
-                //hello
             }
         }
     }
 
-    public void cashout(int amount) {
-        if (amount < accountBalance) {
-            accountBalance = accountBalance - amount;
+    public void cashout(Bankkonto BK_t, int withdrawMoney) {
+        if (withdrawMoney <= storedMoney ){
+        	storedMoney = storedMoney - withdrawMoney;
             System.out.println("Ok, here is your money, enjoy!");
         } else {
             System.out.println("Sorry, not enough money in the bank.");
