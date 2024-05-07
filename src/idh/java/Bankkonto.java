@@ -22,4 +22,9 @@ public class Bankkonto {
 	void setGeldAufKonto(int geldAufKonto) {
 		this.geldAufKonto = geldAufKonto;
 	}
+	
+	protected void kontoVerrechnung(int withdrawMoney){
+		this.geldAufKonto = geldAufKonto - withdrawMoney;
+	}
+	
 }
